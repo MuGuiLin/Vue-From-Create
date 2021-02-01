@@ -7,15 +7,32 @@
     </h1>
 
     <br />
-    <a href="http://www.form-create.com/v2/guide/rule.html" target="_blank">表单 rule[] 生成规则</a>
+    <a href="http://www.form-create.com/v2/guide/rule.html" target="_blank"
+      >表单 rule[] 生成规则</a
+    >
 
     <br />
     <br />
-    
+
     <Row>
-        <Button size="large" type="success" @click="generateFormFn"  icon="ios-download-outline" >根据JSON生成表单</Button>
-        <Button size="large" type="primary" @click="ajaxSetDataFn" icon="md-edit">Ajax请求初始化表单</Button>
-        <Button size="large" type="info" @click="getFormModelFn" icon="md-s-promotion">获取表单Model对象</Button>
+           
+      <Button
+        size="large"
+        type="success"
+        @click="generateFormFn"
+        icon="ios-download-outline"
+        >根据JSON生成表单</Button
+      >
+      <Button size="large" type="primary" @click="ajaxSetDataFn" icon="md-edit"
+        >Ajax请求初始化表单</Button
+      >
+      <Button
+        size="large"
+        type="info"
+        @click="getFormModelFn"
+        icon="md-s-promotion"
+        >获取表单Model对象</Button
+      >
     </Row>
 
     <br />
@@ -45,7 +62,7 @@ export default {
           field: "userName", // 表单组件的字段名称(就是表单的name属性，注：该必须唯一),自定义组件可以不配置
           className: "user-name-dom", // 设置组件的class属性
           title: "用户名称：", // 组件的名称, 选填
-          value: "", // 表单组件的字段值(就是表单的value值),自定义组件可以不用设置
+          value: "沐枫", // 表单组件的字段值(就是表单的value值),自定义组件可以不用设置
           props: {
             placeholder: "请输入用户名称！",
             disabled: false,
@@ -61,6 +78,11 @@ export default {
           ],
           col: {
             md: { span: 12 },
+          },
+          on: {
+            input: (e) => {
+              alert(e);
+            },
           },
         },
 
@@ -114,6 +136,7 @@ export default {
             rows: 3,
             placeholder: "请输入个人简介！",
           },
+          emit:['change']
         },
 
         {
@@ -191,6 +214,21 @@ export default {
       option: {
         // 显示重置表单按扭
         resetBtn: true,
+        form: {
+          //是否开启行内表单模式
+          inline: false,
+          //表单域标签的位置，可选值为 left、right、top
+          labelPosition: "left",
+          //表单域标签的宽度，所有的 FormItem 都会继承 Form 组件的 label-width 的值
+          // labelPosition为"top"时,需要手动设置 labelWidth 为 undefined
+          labelWidth: 125,
+          //是否显示校验错误信息
+          showMessage: true,
+          //原生的 autocomplete 属性，可选值为 off 或 on
+          autocomplete: "off",
+          //所有带有 size 属性的组件的尺寸，默认为不设置，详见各组件默认的 size 值。可选值为 default、small 或 large。
+          size: undefined,
+        },
 
         // 表单提交按扭事件
         onSubmit: (formData) => {
@@ -217,6 +255,9 @@ export default {
     }, 5000);
   },
   methods: {
+    change(e) {
+      console.log(e);
+    },
     // 设置表单数据
     ajaxSetDataFn() {
       this.fApi.setValue({

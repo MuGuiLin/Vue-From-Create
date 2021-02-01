@@ -4,9 +4,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import formCreate from '@form-create/iview4'
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
+
+import formCreate from '@form-create/iview4'
 
 
 Vue.config.productionTip = false
